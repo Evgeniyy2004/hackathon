@@ -1,0 +1,53 @@
+services:
+  postgresql:
+    image: postgres:latest
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: scrapper
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgresql:/var/lib/postgresql/data
+    networks:
+      - backend
+  liquibase-migrations:
+    image: liquibase/liquibase:4.25
+    depends_on:
+      - postgresql
+    command:
+      - --changelog-file=master.xml
+      - --driver=org.postgresql.Driver
+      - --url=jdbc:postgresql://postgresql:5432/scrapper
+      - --username=postgres
+      - --password=postgres
+      - update
+    volumes:
+      - ./scrapper/src/main/resources/migrations:/liquibase/changelog
+    networks:
+      - backend
+  grafana:
+    image: grafana/grafana-oss
+    depends_on:
+        - prometheus
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+  prometheus:
+      image: prom/prometheus
+      ports:
+        - 9090:9090
+      volumes:
+        - ./prometheus.yml:/etc/prometheus/prometheus.yml
+        - ./prometheus:/prometheus
+
+volumes:
+  postgresql: { }
+
+
+networks:
+  backend: { }

@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/scrapper
+    username: postgres
+    password: postgres
+    driverClassName: org.postgresql.Driver
+  liquibase:
+    enabled: false
+  application:
+    name: bot
+  jackson:
+    time-zone: UTC
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+server:
+  port: 8081
+management:
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: prometheus,health,info,metrics
+  server:
+    port: 51270
+
+
+
+logging:
+  config: classpath:log4j2-plain.xml
