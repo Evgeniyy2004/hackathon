@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import com.example.demo.model.BankOperationCategory;
+import com.example.demo.service.BankIntegrationService;
+import com.example.demo.service.UserWhereaboutsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +17,11 @@ public class MoneyController {
 
 
     @Autowired
-    private WithdrawService service1;
+    private BankIntegrationService service1;
 
 
     @Autowired
-    private UserService service2;
+    private UserWhereaboutsService service2;
 
     @GetMapping("/{period}")
     public String getAll(Model model, @PathVariable("id") String userId,
@@ -34,7 +37,7 @@ public class MoneyController {
 
         HashMap<Category, Long> withdraws = new HashMap();
         for (DTO d : all) {
-            if (d.type == WITHDRAW) {
+            if (d.type == BankOperationCategory.WITHDRAWAL) {
                 if (withdraws.containsKey(d.category)) {
                     withdraws.put(d.category, withdraws.get(d.category) + d.sum);
                 } else {
