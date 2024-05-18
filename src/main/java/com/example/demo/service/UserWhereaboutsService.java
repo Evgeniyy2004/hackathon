@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.model.User;
 import com.example.demo.model.UserWhereabouts;
+import com.example.demo.model.UserWhereaboutsDto;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,18 +11,39 @@ import org.springframework.stereotype.Service;
 public class UserWhereaboutsService {
     /**
      *
-     * @param userId user indentifier
-     * @return user's whereabouts
+     * @param userId user identifier
+     * @return user's whereabouts DTO
      */
-    public UserWhereabouts getUserWhereabouts(long userId){
+    public UserWhereaboutsDto getUserWhereabouts(long userId){
         return null;
     }
 
-    public void createUserWhereabouts(){
-
+    /**
+     * @param userId User Identifier
+     * @return true if success, false if fault
+     */
+    public boolean deleteUserWhereabouts(long userId){
+        return true;
     }
 
-    public boolean updateUserWhereabouts(UserWhereabouts userWhereabouts){
+    /**
+     *
+     * @param userWhereaboutsDto данные нового пользователя
+     * @return идентификатор созданной сущности БД
+     * <br>Dummy at the moment
+     */
+    public long createUserWhereabouts(UserWhereaboutsDto userWhereaboutsDto){
+        return 0;
+    }
+
+    /**
+     *
+     * @param userId User database Id
+     * @param userWhereaboutsDto новые данные пользователя
+     * @return true if successfully updated, false if failed
+     * <br>Dummy at the moment
+     */
+    public boolean updateUserWhereabouts(long userId, UserWhereaboutsDto userWhereaboutsDto){
         return true;
     }
 }
