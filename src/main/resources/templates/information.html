@@ -17,8 +17,8 @@
     <div id="piechart" style="width: 900px; height: 500px;"></div>
 </div>
 <script th:inline="javascript">
-   var real_data = /*[[${withdraws}]]*/;
-   var length = /*[[${period}]]*/;
+   var real_data = /*[[${withdraws}]]*/"";
+   var length = /*[[${period}]]*/"";
         $(document).ready(function () {
             google.charts.load('current', {
                 packages: ['corechart', 'bar']
