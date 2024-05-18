@@ -10,18 +10,20 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/{id}/{password}")
 public class MoneyController {
-
-
-    @Autowired
     private BankIntegrationService service1;
 
+    private UserWhereaboutsService service2;
 
     @Autowired
-    private UserWhereaboutsService service2;
+    public MoneyController(BankIntegrationService service1, UserWhereaboutsService service2){
+        this.service1 = service1;
+        this.service2 = service2;
+    }
 
     @GetMapping("/{period}")
     public String getAll(Model model, @PathVariable("id") String userId,
@@ -35,7 +37,7 @@ public class MoneyController {
         long plus = 0;
         long minus = 0;
 
-        HashMap<Category, Long> withdraws = new HashMap();
+        Map<Category,Long> withdraws = new HashMap<>();
         for (DTO d : all) {
             if (d.type == BankOperationCategory.WITHDRAWAL) {
                 if (withdraws.containsKey(d.category)) {

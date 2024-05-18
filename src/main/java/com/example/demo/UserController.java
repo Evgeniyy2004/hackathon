@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/user/{id}/{password}")
 public class UserController {
-    @Autowired
     private UserWhereaboutsService service;
-
-
+    @Autowired
+    public UserController(UserWhereaboutsService service){
+        this.service = service;
+    }
     @PostMapping("/")
     public String register(Model model, @PathVariable("id") String userId,
                            @PathVariable("password") String password){
