@@ -14,7 +14,6 @@ public class UserController {
     private UserService service;
 
 
-
     @PostMapping("/")
     public String register(Model model, @PathVariable("id") String userId,
                            @PathVariable("password") String password){
@@ -22,7 +21,7 @@ public class UserController {
                 return "already";
             }
             else {
-                return "success";
+                return "successregistry";
             }
 
     }

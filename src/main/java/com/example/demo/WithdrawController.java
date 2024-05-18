@@ -3,15 +3,14 @@ package com.example.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 
 @Controller
-@RequestMapping("/get/{id}/{password}")
-public class DataController {
+@RequestMapping("withdraw/{id}/{password}")
+public class WithdrawController {
 
 
     @Autowired
@@ -53,5 +52,16 @@ public class DataController {
         }
         model.addAttribute("withdraws",withdraws);
         return "information";
+    }
+
+    @PostMapping("/{category}/{sum}")
+    public String pay(Model model, @RequestParam(name = "time") LocalDateTime localDateTime, @PathVariable("id") String userId,
+                         @PathVariable("password") String password, @PathVariable("category") Category category,
+                         @PathVariable("sum") long sum) {
+        if (!service2.get(userId, password)) {
+            return "unregistered";
+        }
+
+        service1.add(userId,category,localDateTime, sum);
     }
 }
