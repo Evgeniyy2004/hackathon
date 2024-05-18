@@ -18,7 +18,6 @@ public class UserWhereaboutsService {
         return null;
     }
 
-
     /**
      * @param userId User Identifier
      * @return true if success, false if fault
