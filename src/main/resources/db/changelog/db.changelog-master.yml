@@ -1,4 +1,6 @@
 databaseChangeLog:
   - includeAll:
-      path: db/changelog/changeset/
+      path: db/changelog/changeset/1.0/
+  - includeAll:
+      path: db/changelog/changeset/1.1/
 
