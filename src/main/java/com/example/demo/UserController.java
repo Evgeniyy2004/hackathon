@@ -18,6 +18,12 @@ public class UserController {
     @PostMapping("/")
     public String register(Model model, @PathVariable("id") String userId,
                            @PathVariable("password") String password){
-            if (service.get(userId,password))
+            if (service.get(userId,password)) {
+                return "already";
+            }
+            else {
+                return "success";
+            }
+
     }
 }
