@@ -5,7 +5,7 @@ spring:
     password: postgres
     driverClassName: org.postgresql.Driver
   liquibase:
-    enabled: false
+    enabled: true
   application:
     name: bot
   jackson:
@@ -24,7 +24,6 @@ management:
         include: prometheus,health,info,metrics
   server:
     port: 51270
-
 
 
 logging:
