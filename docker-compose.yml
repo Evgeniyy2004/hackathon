@@ -16,14 +16,14 @@ services:
     depends_on:
       - postgresql
     command:
-      - --changelog-file=master.xml
+      - --changelog-file=master.yml
       - --driver=org.postgresql.Driver
       - --url=jdbc:postgresql://postgresql:5432/scrapper
       - --username=postgres
       - --password=postgres
       - update
     volumes:
-      - ./scrapper/src/main/resources/migrations:/liquibase/changelog
+      - ./src/main/resources/migration:/liquibase/changelog
     networks:
       - backend
   grafana:

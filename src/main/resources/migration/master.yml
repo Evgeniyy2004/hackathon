@@ -1,0 +1,6 @@
+databaseChangeLog:
+  - includeAll:
+      path: /2
+  - includeAll:
+      path: /1
+
