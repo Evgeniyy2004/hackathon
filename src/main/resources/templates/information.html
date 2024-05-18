@@ -1,10 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Google Charts Example - Spring Boot</title>
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script type="text/javascript"
+            src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
+<div align="center" style="width: 1000px;">
+    <h2>Spring Boot Google Charts Example</h2>
+    <div id="chart_div"></div>
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+</div>
+<script th:inline="javascript">
+   var real_data = /*[[${withdraws}]]*/;
+   var length = /*[[${period}]]*/;
+        $(document).ready(function () {
+            google.charts.load('current', {
+                packages: ['corechart', 'bar']
+            });
+            google.charts.setOnLoadCallback(drawColumnChart);
+            google.charts.setOnLoadCallback(drawPieChart);
+        });
 
+    function drawPieChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Year');
+        data.addColumn('number', 'Views');
+        Object.keys(real_data).forEach(function(key) {
+            data.addRow([ key, real_data[key] ]);
+        });
+        let options;
+        if (length === 31) {
+            options = {
+                title: 'Статистика расходов за месяц'
+            };
+        }
+        else {
+            options = {
+                title: 'Статистика расходов за неделю'
+            };
+        }
+        var chart = new google.visualization.PieChart(document
+            .getElementById('piechart'));
+        chart.draw(data, options);
+    }
+</script>
+<h2 align="center">Текущий баланс: <span th:text="${balance}" /></h2>
 </body>
 </html>

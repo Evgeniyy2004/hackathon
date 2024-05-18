@@ -10,17 +10,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/get/{id}/{password}")
 public class DataController {
-    @Autowired
-    private DataService service1;
+
 
     @Autowired
-    private UserService service2;
+    private WithdrawService service1;
 
-    @GetMapping("/")
-    public String getAll(Model model,@PathVariable("id") String userId, @PathVariable("password") String password) {
-        if (!service2.get(userId,password)){
+    @Autowired
+    private DepositService service2;
 
+    @Autowired
+    private UserService service3;
+
+    @GetMapping("/{period}")
+    public String getAll(Model model,@PathVariable("id") String userId,
+                         @PathVariable("password") String password, @PathVariable("period") Period period) {
+        if (!service3.get(userId,password)){
+            return "unregistered";
         }
+
+
+        var withdraws = service1.get(userId,period);
+        model.addAttribute()
+        var deposits = service2.get(userId,period);
         return "information";
     }
 }
