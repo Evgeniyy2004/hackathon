@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-accounts
+      author: Andrey
+      changes:
+        - createTable:
+            tableName: accounts
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+              baseTableName: accounts
+              baseColumnNames: id
+              referencedTableName: users
+              referencedColumnNames: id
+              constraintName: user_id
+
+
