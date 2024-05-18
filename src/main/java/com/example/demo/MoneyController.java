@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 
 @Controller
-@RequestMapping("withdraw/{id}/{password}")
-public class WithdrawController {
+@RequestMapping("/{id}/{password}")
+public class MoneyController {
 
 
     @Autowired
@@ -63,5 +63,6 @@ public class WithdrawController {
         }
 
         service1.add(userId,category,localDateTime, sum);
+        return "successoperation";
     }
 }
