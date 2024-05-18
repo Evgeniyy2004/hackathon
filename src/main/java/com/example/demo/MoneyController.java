@@ -26,7 +26,7 @@ public class MoneyController {
     @GetMapping("/{period}")
     public String getAll(Model model, @PathVariable("id") String userId,
                          @PathVariable("password") String password, @PathVariable("period") Period period) {
-        if (!service2.get(userId, password)) {
+        if (service2.getUserWhereabouts(Long.parseLong(userId))==null) {
             return "unregistered";
         }
 
@@ -61,7 +61,7 @@ public class MoneyController {
     public String pay(Model model, @RequestParam(name = "time") LocalDateTime localDateTime, @PathVariable("id") String userId,
                          @PathVariable("password") String password, @PathVariable("category") Category category,
                          @PathVariable("sum") long sum) {
-        if (!service2.get(userId, password)) {
+        if (service2.getUserWhereabouts(Long.parseLong(userId))==null) {
             return "unregistered";
         }
 
