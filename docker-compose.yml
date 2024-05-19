@@ -13,16 +13,12 @@ services:
       - backend
   db:
     image: postgres:16
-    ports:
-      - "8080:5432"
     environment:
       POSTGRES_DB: sonar
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-    volumes:
-      - postgresql:/var/lib/postgresql/data
+      POSTGRES_USER: sonar
+      POSTGRES_PASSWORD: sonar
     networks:
-      - backend
+      - sonarnet
   liquibase-migrations:
     image: liquibase/liquibase:4.25
     depends_on:
@@ -73,5 +69,5 @@ volumes:
 
 
 networks:
-  sonarnet: { }
   backend: { }
+  sonarnet: { }
