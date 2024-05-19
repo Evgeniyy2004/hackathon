@@ -2,8 +2,8 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
 
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

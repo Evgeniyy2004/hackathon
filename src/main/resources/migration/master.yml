@@ -1,6 +1,6 @@
 databaseChangeLog:
   - includeAll:
-      path: /2
+      path: ./2
   - includeAll:
-      path: /1
+      path: ./1
 

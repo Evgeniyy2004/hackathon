@@ -5,9 +5,8 @@ spring:
     password: postgres
     driverClassName: org.postgresql.Driver
   liquibase:
-    enabled: true
-    change-log:
-      classpath: ..../
+    enabled: false
+    change-log: migration/master.yml
   application:
     name: bot
   jackson:
