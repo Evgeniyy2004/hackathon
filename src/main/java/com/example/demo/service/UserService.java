@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.UserDTO;
+import com.example.demo.dto.UserDto;
 import com.example.demo.dto.UserShortDto;
 import com.example.demo.exceptions.ConflictDataException;
 import com.example.demo.exceptions.NotFoundException;
@@ -22,7 +22,7 @@ public class UserService {
     private final UserMapper userMapper;
     private final UserRepository userRepository;
 
-    public UserDTO create(UserDTO userDTO) {
+    public UserDto create(UserDto userDTO) {
         if (userRepository.existsByFullNameAndEmail(userDTO.getFullName(), userDTO.getEmail()).isPresent()) {
             throw new ConflictDataException("A user with name: " + userDTO.getFullName() +
                     " and email: " + userDTO.getEmail() + " already exists");
@@ -35,9 +35,9 @@ public class UserService {
         return userMapper.toUserDto(addedUser);
     }
 
-    public UserDTO update(Long id, String password, UserDTO userDTO) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("User not found: " + id));
+    public UserDto update(String password, UserDto userDTO) {
+        User user = userRepository.findById(userDTO.getId())
+                .orElseThrow(() -> new NotFoundException("User not found: " + userDTO.getId()));
         if (!user.getPassword().equals(password)) {
             throw new ConflictDataException("Incorrect password");
         }
@@ -63,7 +63,7 @@ public class UserService {
         return userMapper.toUserShortDto(user);
     }
 
-    public UserDTO getFullUserDTOById(Long id, String password) {
+    public UserDto getFullUserDTOById(Long id, String password) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("User not found: " + id));
         if (!user.getPassword().equals(password)) {

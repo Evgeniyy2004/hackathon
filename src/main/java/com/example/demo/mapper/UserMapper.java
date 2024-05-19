@@ -1,6 +1,6 @@
 package com.example.demo.mapper;
 
-import com.example.demo.dto.UserDTO;
+import com.example.demo.dto.UserDto;
 import com.example.demo.dto.UserShortDto;
 import com.example.demo.model.User;
 import org.springframework.stereotype.Component;
@@ -8,8 +8,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper {
-    public UserDTO toUserDto(User user) {
-        UserDTO userDto = new UserDTO();
+    public UserDto toUserDto(User user) {
+        UserDto userDto = new UserDto();
+        userDto.setId(user.getId());
         userDto.setFullName(user.getFullName());
         userDto.setPassword(user.getPassword());
         userDto.setEmail(user.getEmail());
@@ -17,7 +18,7 @@ public class UserMapper {
         return userDto;
     }
 
-    public User toUser(UserDTO userDTO) {
+    public User toUser(UserDto userDTO) {
         User user = new User();
         user.setFullName(userDTO.getFullName());
         user.setPassword(userDTO.getPassword());
