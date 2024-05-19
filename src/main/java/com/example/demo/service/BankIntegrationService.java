@@ -17,4 +17,14 @@ public class BankIntegrationService {
 
     }
 
+    /**
+     *
+     * @param userAccountNumber user account in bank
+     * @param userBankUin UIN of bank hosting user account
+     * @return user account amount
+     */
+    public int getUserBalance(int userAccountNumber, int userBankUin){
+        return 0;
+    }
+
 }
