@@ -6,6 +6,8 @@ spring:
     driverClassName: org.postgresql.Driver
   liquibase:
     enabled: true
+    change-log:
+      classpath: ..../
   application:
     name: bot
   jackson:
@@ -25,6 +27,3 @@ management:
   server:
     port: 51270
 
-
-logging:
-  config: classpath:log4j2-plain.xml

@@ -22,7 +22,7 @@ public class BankIntegrationService {
      * @param userBankUin UIN of bank hosting user account
      * @return user account amount
      */
-    public int getUserBalance(int userAccountNumber, int userBankUin){
+    public int getUserBalance(Long id){
         return 0;
     }
 
